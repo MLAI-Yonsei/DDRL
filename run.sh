@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Configuration variables
-interval=20
-num_cities=20
-num_init_sample=20
-num_epochs=50
-num_inner_epochs=20
+interval=40
+num_cities=200
+num_init_sample=1
+num_epochs=1
+num_inner_epochs=1
 now=$(date +"%F_%T")
 run_name="tsp${num_cities}_epoch${num_epochs}_${num_inner_epochs}_${now}"
 constraint_type="cluster"
@@ -14,7 +14,7 @@ constraint_type="cluster"
 mkdir -p "./logs/${constraint_type}/${run_name}"
 
 # Manually define available devices
-available_devices=(0 1 2 3 4 5 6)  # Specify the GPU IDs you want to use
+available_devices=(1 2 3)  # Specify the GPU IDs you want to use
 num_devices=${#available_devices[@]}
 
 # Train models in batches

@@ -13,20 +13,20 @@ num_cities : 50
 run_name : 'tsp20_constraint'
 use_plug_and_play : True
 use_prior : True
-constraint_type : 'path'
+constraint_type : 'cluster'
 
 # sample
 num_steps : 50
 batch_size_sample : 1
-num_init_sample : 3
+num_init_sample : 10
 eta : 1.0 #TODO: check this randomness
 use_best_sample : False
 
 # train
 timestep_fraction : 1.0
 gradient_accumulation_steps : 1
-num_epochs : 3
-num_inner_epochs : 5
+num_epochs : 20
+num_inner_epochs : 10
 
 learning_rate : 0.1 #3e-4
 adam_beta1 : 0.9

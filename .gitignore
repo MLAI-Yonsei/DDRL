@@ -1,0 +1,52 @@
+# Allow-list: everything is ignored unless opened below.  New files are
+# therefore private until someone decides otherwise.
+*
+!*/
+
+# source
+!/README.md
+!/LICENSE
+!/NOTICE
+!/.gitignore
+!/environment.yaml
+!/requirements.txt
+!/main.py
+!/aggregate_results.py
+!/run_example.sh
+!/configs/default.yaml
+!/ddrl/*.py
+!/ddrl/cython_merge/__init__.py
+!/ddrl/cython_merge/cython_merge.pyx
+!/ddrl/cython_merge/setup.py
+!/prior/*.py
+!/tools/constraint_dataset.py
+!/assets/*.png
+# other files in tools/ are local release tooling and stay untracked
+
+# benchmark data (the twelve constrained files are the released dataset;
+# the basic test sets are downloaded from learning-tsp and stay untracked)
+!/data/README.md
+!/data/SHA256SUMS
+!/data/make_dataset_*.py
+!/data/generation_utils.py
+!/data/tsp*_box_constraint_*.txt
+!/data/tsp*_path_constraint_*.txt
+!/data/tsp*_cluster_constraint_*.txt
+
+# checkpoints and heatmaps are release assets, not tracked files
+!/ckpt/README.md
+
+# never, even if a rule above would open them
+*.pth
+*.ckpt
+*.npy
+*.csv
+*.log
+__pycache__/
+*.so
+*.c
+build/
+Results/
+logs/
+images/
+heatmaps/

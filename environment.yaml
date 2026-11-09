@@ -1,0 +1,12 @@
+# conda env create -f environment.yaml && conda activate ddrl
+# then install PyTorch for your CUDA, e.g. (the paper's version):
+#   pip install torch==1.13.1+cu117 --extra-index-url https://download.pytorch.org/whl/cu117
+name: ddrl
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - -r requirements.txt

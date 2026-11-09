@@ -1,0 +1,56 @@
+DDRL bundles or adapts code and data from the following projects. Each is used
+under its own license, reproduced in the linked repositories. Every adapted file
+also names its source in its header.
+
+* diffusion_priors (Alexandros Graikos et al., NeurIPS 2022), MIT License.
+  https://github.com/AlexGraikos/diffusion_priors
+  - prior/unet.py, prior/nn.py, prior/diffusion.py: copied from tsp/ (import
+    path changed; prior/diffusion.py adds a missing `import math`).
+  - ddrl/prior_init.py (plug_and_play_init): adapted from `runlat` in
+    tsp/inference.py.
+  - ddrl/latent.py (LatentTourModel, adjacency_from_latent): adapted from
+    `InferenceModel` and `normalize` in tsp/inference.py.
+  - ddrl/decoding.py (greedy_constrained_tour): starts from the greedy edge
+    insertion of tsp/inference.py.
+  - ddrl/solver.py (TwoOptSolver): extends `TSP_2opt` in tsp/tsp_utils.py.
+  - ddrl/dataset.py (draw_tour, TSPDataset): extend `rasterize_tsp` and
+    `TSPDataset` in tsp/tsp_utils.py and tsp/inference.py.
+  - The prior checkpoint unet50_64_8.pth is the one distributed by that project.
+
+* OpenAI guided-diffusion / improved-diffusion, MIT License.
+  https://github.com/openai/guided-diffusion
+  prior/unet.py and prior/nn.py descend from these files through
+  diffusion_priors; prior/unet.py also adapts an attention block from OpenAI
+  CLIP (https://github.com/openai/CLIP, MIT License).
+
+* DDPO (Kevin Black et al., ICLR 2024), MIT License.
+  https://github.com/kvablack/ddpo-pytorch
+  - ddrl/sampling.py (ddim_step_with_logprob, sample_trajectory): adapted from
+    ddpo_pytorch/diffusers_patch/ddim_with_logprob.py and
+    pipeline_with_logprob.py.
+  - ddrl/search.py: the sampling / advantage normalization / clipped-ratio
+    update loop follows scripts/train.py.
+
+* diffusers (Hugging Face), Apache License 2.0.
+  https://github.com/huggingface/diffusers
+  The DDIM scheduler (diffusers 0.17.1) is used as a library; the DDIM step in
+  ddrl/sampling.py is derived from its DDIMScheduler.step through DDPO.
+
+* DIFUSCO (Zhiqing Sun and Yiming Yang, NeurIPS 2023), MIT License.
+  https://github.com/Edward-Sun/DIFUSCO
+  - ddrl/cython_merge/cython_merge.pyx: copied unmodified from
+    difusco/utils/cython_merge/.
+  - ddrl/decoding.py (cython_merge, merge_tour, batched_two_opt_torch): adapted
+    from difusco/utils/tsp_utils.py.
+  - The DDRL-DIFUSCO variant starts from heatmaps produced by DIFUSCO's released
+    checkpoints; see ckpt/README.md.
+
+* learning-tsp (Chaitanya K. Joshi et al.), MIT License.
+  https://github.com/chaitjo/learning-tsp
+  The city coordinates and Concorde tours of the basic TSP test sets
+  (tsp{20,50,100,200}_test_concorde.txt), and the coordinates reused by the
+  constrained benchmark files in data/, come from this project.
+
+* Concorde TSP solver (Applegate, Bixby, Chvatal, Cook), academic license.
+  The reference tours in data/ were computed with Concorde through pyconcorde
+  (https://github.com/jvkersch/pyconcorde) when the benchmark was generated.

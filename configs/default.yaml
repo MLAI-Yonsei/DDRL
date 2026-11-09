@@ -1,0 +1,44 @@
+# Default settings of DDRL; every number in the paper uses these values.
+# Command-line flags of main.py override the entries of the same name.
+
+# --- reproducibility
+seed: 2024                 # global seed; each instance is re-seeded with seed + instance index
+deterministic: true        # deterministic cuDNN kernels
+allow_tf32: true           # TF32 matmuls on Ampere GPUs (the paper's A6000 / 3090 runs)
+
+# --- search budget (68 reward evaluations per instance; Supp. Sec. F, "Evaluation Budget")
+num_init_sample: 10        # K: round-1 candidates (initial samples)
+num_epochs: 5              # E_max: rounds
+num_inner_epochs: 5        # E_in: passes over the K candidates in round 1 (later rounds: 1)
+use_early_stop: false      # stop when `patience` rounds bring no improvement
+patience: 10
+max_iter: 10000            # 2-opt iteration cap
+
+# --- denoising process (Eq. 1)
+num_steps: 50              # T: DDIM steps, also the number of plug-and-play initialization steps
+eta: 1.0                   # sigma_t as in DDPM (Supp. Sec. A)
+
+# --- policy update (Eq. 3)
+learning_rate: 0.1         # AdamW on phi
+adam_beta1: 0.9
+adam_beta2: 0.999
+adam_weight_decay: 0.0001
+adam_epsilon: 0.00000001
+batch_size_train: 1        # candidates per optimizer step; >1 averages over candidates
+clip_range: 0.0001         # delta of clip_delta(rho)
+adv_clip_max: 5            # A_max: advantages are clipped to [-A_max, A_max]
+
+# --- reward (Eq. 2)
+penalty_const: 1           # xi: penalty per violated constraint, cost(y) = l(y) + xi V(y)
+penalty_in_reward: true    # use xi inside the RL reward too, not only for keep-best
+
+# --- rasterization (must match the prior's training images)
+point_radius: 2
+point_color: 1
+point_circle: true
+line_thickness: 2
+line_color: 0.5
+
+# --- output
+save_result: true
+save_freq: 2               # rewrite the result CSV every `save_freq` instances

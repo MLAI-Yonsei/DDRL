@@ -138,7 +138,7 @@ The twelve files in `data/` (obstacle, path and cluster constraints at N = 20, 5
   level of the printed averages rather than bit-for-bit per instance. On the same
   machine and software, runs are deterministic.
 * Runtime per instance under a solo protocol: about 35 s at N = 20 to 100, 51 s at
-  N = 200 and 457 s at N = 500 on an A6000 (paper, Table 5). Most of it is the ten
+  N = 200 and 457 s at N = 500 on an A6000 (supplementary material, Table A11). Most of it is the ten
   initial prior samples; `--num_init_sample` and `--num_steps` are the levers.
 * Known data issues (a degenerate path pair here and there, one infeasible path
   reference at N = 200, non-optimal cluster references at N = 20) are listed in

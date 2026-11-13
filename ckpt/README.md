@@ -33,6 +33,6 @@ per-size inference settings of its `reproducing_scripts.md`
 | 20 | `tsp20_categorical.ckpt` | trained by us with DIFUSCO's own `train.py` (50 epochs, batch 128, lr 2e-4, cosine decay) because no official checkpoint exists at this size; attached to the GitHub release | `a30c481bffd5cfcda0dd0cd0f7144b53` |
 | 200 | `tsp100_categorical.ckpt` decoded zero-shot | the official `N = 100` checkpoint applied to `N = 200` instances; no checkpoint is distributed for 200 | see that README |
 
-The paper's Table 1 and Table 3 rows labelled DIFUSCO are these heatmaps decoded
+The paper's Table 1 and Table 2 rows labelled DIFUSCO are these heatmaps decoded
 once (greedy + 2-opt); the DDRL-DIFUSCO rows run DDRL's search from the same
 heatmaps.

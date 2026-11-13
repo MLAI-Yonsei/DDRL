@@ -2,7 +2,7 @@
 
 Twelve files, one per (constraint family, size), 1,280 instances each. They are
 the benchmark used in *DDRL: A Diffusion-Driven Reinforcement Learning Approach
-for Enhanced TSP Solutions* (WACV 2027), Table 3 and the supplementary material.
+for Enhanced TSP Solutions* (WACV 2027), Tables 2 and 3 and the supplementary material.
 `SHA256SUMS` lists the checksum of every file (`sha256sum -c SHA256SUMS`).
 
 | family | files | constraint | sizes |
